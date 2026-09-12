@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="My Web Application">
-    <title>My Web Project</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Study App</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <main>
-        <h1>Welcome to My Web Project</h1>
-        <p>Your HTML5 boilerplate is ready. Add your content and components here.</p>
-    </main>
+  <div class="container">
+    <h1>📚 Study App</h1>
+    <p class="subtitle">Photo of your textbook → understanding + practice questions</p>
+
+    <div class="card">
+      <label>Chapter</label>
+      <input type="text" id="chapter" placeholder="e.g. Motion" />
+      <label>Subtopic</label>
+      <input type="text" id="subtopic" placeholder="e.g. Acceleration due to Gravity" />
+      <label>Take a photo or upload a page from your book</label>
+      <input type="file" id="imageInput" accept="image/*" capture="environment" />
+      <button id="extractBtn">1. Extract Text</button>
+    </div>
+
+    <div class="card" id="textCard" style="display:none;">
+      <label>Extracted Text (check it's correct, then generate)</label>
+      <textarea id="extractedText" rows="8"></textarea>
+      <button id="generateBtn">2. Generate Questions</button>
+    </div>
+
+    <div id="status"></div>
+    <div id="results"></div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
