@@ -1,0 +1,17 @@
+{
+  "name": "my-github-project",
+  "version": "1.0.0",
+  "description": "ICSE Study Assistant API Server with OCR and Anthropic AI",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "tesseract.js": "^5.1.0"
+  }
+}
