@@ -19,6 +19,56 @@
     margin: 0;
     padding: 0;
 }
+/* 1. Base Button Styling */
+.bouncy-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #6200ee;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  /* Smooth transition for standard hover properties (color/shadow) */
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+  /* 2. Entrance Animation (using ease-out) */
+  /* This smoothly slides/fades the button onto the page when it loads */
+  animation: entranceSlide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. The Hover State (The Bounce) */
+/* When hovered, we trigger a custom bounce using an elastic cubic-bezier curve */
+.bouncy-btn:hover {
+  background-color: #7722ff;
+  box-shadow: 0 8px 16px rgba(98, 0, 238, 0.3);
+  
+  /* Scale up and tilt slightly using a physics-defying bounce curve */
+  transform: scale(1.08) translateY(-3px);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* The Active Click State (Squish Effect) */
+/* Provides tactile feedback when the user actually clicks down */
+.bouncy-btn:active {
+  transform: scale(0.95) translateY(0);
+  transition: transform 0.1s ease;
+}
+
+/* 4. Entrance Timeline Keyframe */
+@keyframes entranceSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 body {
     background-color: var(--bg-dark);
