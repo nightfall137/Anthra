@@ -1,7 +1,7 @@
 {
   "name": "my-github-project",
   "version": "1.0.0",
-  "description": "ICSE Study Assistant API Server with OCR and Anthropic AI",
+  "description": "Study Assistant API Server with OCR and Anthropic AI",
   "main": "script.js",
   "scripts": {
     "start": "node script.js"
