@@ -1011,3 +1011,33 @@ body {
     grid-template-columns: 1fr;
   }
 }
+/* Reset default margins and force full screen height */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Flex layout to place sidebar on left and content on right */
+.app-layout {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
