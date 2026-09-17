@@ -1,68 +1,567 @@
-<!DOCTYPE html>
-<html lang="en">
+<<!DOCTYPE html>
+<html lang="en" data-theme="cyan">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A modern web app project ready to paste code and push to GitHub.">
-    <title>My GitHub Project</title>
+    <meta name="description" content="Creva - Modern Smart Study Workspace">
+    <title>Creva - Smart Study Workspace</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <div class="background-glow"></div>
-    
-    <div class="container">
-        <header class="app-header">
-            <div class="badge">🚀 Ready for GitHub</div>
-            <h1 id="main-title">My Web Workspace</h1>
-            <p class="subtitle">Paste your HTML, CSS, and JavaScript code here, then push directly to GitHub.</p>
-        </header>
 
-        <main class="content-card">
-            <div class="card-header">
-                <h2>Project Overview</h2>
-                <span class="status-dot"></span>
-            </div>
-            
-            <p>Welcome to your active workspace! You can edit these files anytime:</p>
-            
-            <ul class="file-list">
-                <li class="file-item">
-                    <span class="file-icon">📄</span>
-                    <span class="file-name">index.html</span>
-                    <span class="file-desc">Main HTML Structure</span>
-                </li>
-                <li class="file-item">
-                    <span class="file-icon">🎨</span>
-                    <span class="file-name">style.css</span>
-                    <span class="file-desc">Modern CSS Styling</span>
-                </li>
-                <li class="file-item">
-                    <span class="file-icon">⚡</span>
-                    <span class="file-name">app.js</span>
-                    <span class="file-desc">JavaScript Functionality</span>
-                </li>
-                <li class="file-item">
-                    <span class="file-icon">🚀</span>
-                    <span class="file-name">push-to-github.ps1</span>
-                    <span class="file-desc">Automated GitHub Push Helper</span>
-                </li>
-            </ul>
+    <!-- Ambient Dynamic Grid & Glow Background -->
+    <div class="bg-glow"></div>
+    <div class="bg-grid"></div>
 
-            <div class="action-section">
-                <button id="interactive-btn" class="btn btn-primary">Test Interactive Feature</button>
-                <div id="output-box" class="output-box hidden"></div>
+    <div class="app-layout">
+        
+        <!-- 1. NAVIGATION SIDEBAR -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon"><i data-lucide="zap"></i></div>
+                <span class="brand-name">CREVA</span>
             </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-target="page-dashboard">
+                    <i data-lucide="layout-dashboard"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-target="page-timer">
+                    <i data-lucide="timer"></i>
+                    <span>Focus Timer</span>
+                </button>
+                <button class="nav-item" data-target="page-flashcards">
+                    <i data-lucide="layers"></i>
+                    <span>Flashcards</span>
+                </button>
+            </nav>
+
+            <!-- Theme Switcher Widget -->
+            <div class="theme-selector">
+                <p>THEME ENGINE</p>
+                <div class="theme-dots">
+                    <button class="dot-btn dot-cyan active" onclick="setTheme('cyan')" title="Cyber Cyan"></button>
+                    <button class="dot-btn dot-emerald" onclick="setTheme('emerald')" title="Emerald Matrix"></button>
+                    <button class="dot-btn dot-amber" onclick="setTheme('amber')" title="Electric Amber"></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. MAIN WORKSPACE CONTENT AREA -->
+        <main class="main-content">
+            
+            <!-- Top Header Bar -->
+            <header class="top-header">
+                <div class="header-search">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search workspace, notes, cards...">
+                </div>
+                <div class="header-user">
+                    <div class="streak-badge">
+                        <i data-lucide="flame"></i>
+                        <span>5 Day Streak</span>
+                    </div>
+                    <div class="user-avatar">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=CrevaUser" alt="User Avatar">
+                    </div>
+                </div>
+            </header>
+
+            <!-- SPA VIEW 1: DASHBOARD -->
+            <section id="page-dashboard" class="page-view active">
+                <div class="page-title">
+                    <h1>Workspace Dashboard</h1>
+                    <p>Welcome back! Here is your current study overview.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="clock"></i></div>
+                        <div>
+                            <span class="stat-value">12.5 hrs</span>
+                            <span class="stat-label">Focus Time</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+                        <div>
+                            <span class="stat-value">84%</span>
+                            <span class="stat-label">Task Mastery</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="layers"></i></div>
+                        <div>
+                            <span class="stat-value">142</span>
+                            <span class="stat-label">Cards Reviewed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SPA VIEW 2: FOCUS TIMER -->
+            <section id="page-timer" class="page-view">
+                <div class="page-title">
+                    <h1>Focus Flow Timer</h1>
+                    <p>Stay in the zone using Pomodoro technique intervals.</p>
+                </div>
+
+                <div class="timer-wrapper">
+                    <div class="timer-card">
+                        <div id="timer-display" class="time-readout">25:00</div>
+                        <div style="display: flex; gap: 12px; justify-content: center;">
+                            <button id="btn-start" class="btn btn-primary">Start Flow</button>
+                            <button id="btn-reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SPA VIEW 3: FLASHCARDS -->
+            <section id="page-flashcards" class="page-view">
+                <div class="page-title">
+                    <h1>Active Recall Flashcards</h1>
+                    <p>Click the card to reveal the answer.</p>
+                </div>
+
+                <div class="flashcard-container">
+                    <div id="flashcard" class="flashcard">
+                        <div class="card-face card-front">
+                            <span class="card-tag">COMPUTER SCIENCE</span>
+                            <h3>What is the primary function of an SPA Router in JavaScript?</h3>
+                            <p class="hint-text">Click card to flip 🔄</p>
+                        </div>
+                        <div class="card-face card-back">
+                            <span class="card-tag">ANSWER</span>
+                            <p>It dynamically updates the view/DOM based on user interaction without triggering a full page browser reload.</p>
+                            <p class="hint-text">Click card to flip 🔄</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </main>
-
-        <footer class="app-footer">
-            <p>Built with Antigravity • Connected with GitHub</p>
-        </footer>
     </div>
 
+    <!-- JavaScript Bundle -->
     <script src="app.js"></script>
+</body>
+</html>
+        <!-- Analytics Nav Link -->
+        <button class="nav-item" data-target="page-analytics">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Analytics</span>
+        </button>
+      </nav>
+
+      <!-- Theme Switcher Widget -->
+      <div class="theme-selector">
+        <p>THEME ENGINE</p>
+        <div class="theme-dots">
+          <button class="dot-btn dot-cyan active" onclick="setTheme('cyan')" title="Cyber Cyan"></button>
+          <button class="dot-btn dot-emerald" onclick="setTheme('emerald')" title="Emerald Matrix"></button>
+          <button class="dot-btn dot-amber" onclick="setTheme('amber')" title="Electric Amber"></button>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="nav-item" data-target="page-settings">
+          <i data-lucide="settings"></i>
+          <span>Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN WORKSPACE CONTENT -->
+    <main class="main-content">
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="header-search">
+          <i data-lucide="search"></i>
+          <input type="text" placeholder="Search subjects, decks, or notes...">
+        </div>
+
+        <div class="header-user">
+          <div class="streak-badge">
+            <i data-lucide="flame"></i> 7 Day Streak
+          </div>
+          <div class="user-avatar">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=CrevaUser" alt="Avatar">
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE 1: DASHBOARD VIEW -->
+      <section id="page-dashboard" class="page-view active">
+        <div class="page-title">
+          <h1>Welcome back, Alex 🚀</h1>
+          <p>Ready to hit your focus goals today?</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="clock"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">14.5 hrs</span>
+              <span class="stat-label">Study Time This Week</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">32 / 40</span>
+              <span class="stat-label">Tasks Completed</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="layers"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">185</span>
+              <span class="stat-label">Cards Reviewed</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: ANALYTICS VIEW -->
+      <section id="page-analytics" class="page-view">
+        <div class="page-title">
+          <h1>Performance Analytics</h1>
+          <p>Track your learning progression over time.</p>
+        </div>
+      </section>
+
+      <!-- PAGE 3: SETTINGS VIEW -->
+      <section id="page-settings" class="page-view">
+        <div class="page-title">
+          <h1>Settings</h1>
+          <p>Configure your workspace preferences.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+         <!-- Continuation of stats grid -->
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="brain"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">88%</span>
+              <span class="stat-label">Retention Rate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-split">
+          <div class="content-box">
+            <h3>Recent Subjects</h3>
+            <div class="subject-list">
+              <div class="subject-item">
+                <span class="sub-name">Advanced Calculus</span>
+                <span class="sub-progress">75%</span>
+              </div>
+              <div class="subject-item">
+                <span class="sub-name">Quantum Physics</span>
+                <span class="sub-progress">40%</span>
+              </div>
+            </div>
+          </div>
+          <div class="content-box">
+            <h3>Daily Goals</h3>
+            <ul class="task-list">
+              <li><input type="checkbox" checked> Finish Physics Ch. 4 Flashcards</li>
+              <li><input type="checkbox"> 50-min Pomodoro Sprint</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: POMODORO TIMER VIEW -->
+      <section id="page-timer" class="page-view">
+        <div class="page-title">
+          <h1>Focus Engine</h1>
+          <p>Eliminate distractions and enter deep work.</p>
+        </div>
+        <div class="timer-wrapper">
+          <div class="timer-card">
+            <div class="time-readout" id="timer-display">25:00</div>
+            <div class="timer-actions">
+              <button class="btn btn-primary" id="btn-start">Start Flow</button>
+              <button class="btn btn-secondary" id="btn-reset">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: FLASHCARDS VIEW -->
+      <section id="page-flashcards" class="page-view">
+        <div class="page-title">
+          <h1>3D Flashcard Deck</h1>
+          <p>Master complex terms with active recall.</p>
+        </div>
+        <div class="flashcard-container">
+          <div class="flashcard" id="flashcard">
+            <div class="card-face card-front">
+              <span class="card-tag">QUANTUM PHYSICS</span>
+              <h2>What is Quantum Entanglement?</h2>
+              <p class="hint-text">Click to flip 🔄</p>
+            </div>
+            <div class="card-face card-back">
+              <span class="card-tag">ANSWER</span>
+              <p>A phenomenon where quantum particles become inextricably linked, so that the state of one instantly influences the state of another regardless of distance.</p>
+              <p class="hint-text">Click to flip 🔄</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
+    <!-- PAGE 3: FLASHCARDS VIEW -->
+      <section id="page-flashcards" class="page-view">
+        <div class="page-title">
+          <h1>Smart Flashcards</h1>
+          <p>Click the card to flip between Question and Answer.</p>
+        </div>
+        <div class="flashcard-container">
+          <div class="flashcard" id="flashcard">
+            <div class="card-face card-front">
+              <span class="card-tag">Physics</span>
+              <h2>What is Schrödinger's Wave Equation used for?</h2>
+              <span class="hint-text">Click to reveal answer</span>
+            </div>
+            <div class="card-face card-back">
+              <span class="card-tag">Answer</span>
+              <p>It describes how the quantum state of a physical system changes over time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: ANALYTICS VIEW -->
+      <section id="page-analytics" class="page-view">
+        <div class="page-title">
+          <h1>Study Metrics</h1>
+          <p>Analyze your daily efficiency and focus patterns.</p>
+        </div>
+        <div class="content-box">
+          <p style="color: var(--text-muted);">Weekly study heatmaps and graphs render here.</p>
+        </div>
+      </section>
+
+      <!-- PAGE 5: SETTINGS VIEW -->
+      <section id="page-settings" class="page-view">
+        <div class="page-title">
+          <h1>Settings</h1>
+          <p>Customize your Creva app preferences.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    /* Initialize Lucide icons on DOM ready */
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
+       <!-- NAVIGATION SIDEBAR -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon"><i data-lucide="zap"></i></div>
+        <span class="brand-name">CREVA</span>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-target="page-dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-target="page-timer">
+          <i data-lucide="timer"></i>
+          <span>Timer</span>
+        </button>
+        <button class="nav-item" data-target="page-flashcards">
+          <i data-lucide="layers"></i>
+          <span>Flashcards</span>
+        </button>
+        <button class="nav-item" data-target="page-analytics">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Analytics</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer Theme Switcher -->
+      <div class="sidebar-footer">
+        <div class="theme-selector">
+          <p>APPEARANCE</p>
+          <div class="theme-dots">
+            <button class="dot-btn dot-cyan active" onclick="setTheme('cyan')" title="Cyber Cyan"></button>
+            <button class="dot-btn dot-emerald" onclick="setTheme('emerald')" title="Emerald Matrix"></button>
+            <button class="dot-btn dot-amber" onclick="setTheme('amber')" title="Electric Amber"></button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN WORKSPACE CONTENT -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-search">
+          <i data-lucide="search"></i>
+          <input type="text" placeholder="Search tasks, decks...">
+        </div>
+
+        <div class="header-user">
+          <div class="streak-badge">
+            <i data-lucide="flame"></i> 7 Streak
+          </div>
+          <div class="user-avatar">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=CrevaUser" alt="User Avatar">
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE 1: DASHBOARD -->
+      <section id="page-dashboard" class="page-view active">
+        <div class="page-title">
+          <h1>Welcome back, Alex 🚀</h1>
+          <p>Your weekly target is 85% completed.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="clock"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">14.5 hrs</span>
+              <span class="stat-label">Study Time</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">32 / 40</span>
+              <span class="stat-label">Tasks Done</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: TIMER -->
+      <section id="page-timer" class="page-view">
+        <div class="page-title">
+          <h1>Focus Engine</h1>
+          <p>Enter deep focus mode.</p>
+        </div>
+      </section>
+
+      <!-- PAGE 3: FLASHCARDS -->
+      <section id="page-flashcards" class="page-view">
+        <div class="page-title">
+          <h1>Flashcards</h1>
+          <p>Review active recall cards.</p>
+        </div>
+      </section>
+
+      <!-- PAGE 4: ANALYTICS -->
+      <section id="page-analytics" class="page-view">
+        <div class="page-title">
+          <h1>Analytics</h1>
+          <p>Track your productivity metrics.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
+<!-- PAGE 1: DASHBOARD -->
+      <section id="page-dashboard" class="page-view active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="clock"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">14.5 HRS</span>
+              <span class="stat-label">Study Time</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="check-circle-2"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">32 / 40</span>
+              <span class="stat-label">Tasks Done</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i data-lucide="brain"></i></div>
+            <div class="stat-info">
+              <span class="stat-value">88%</span>
+              <span class="stat-label">Retention</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary">Start Flow Session</button>
+      </section>
+
+      <!-- PAGE 2: TIMER -->
+      <section id="page-timer" class="page-view">
+        <div class="page-title">
+          <h1>Focus Timer</h1>
+        </div>
+      </section>
+
+      <!-- PAGE 3: FLASHCARDS -->
+      <section id="page-flashcards" class="page-view">
+        <div class="page-title">
+          <h1>Flashcards Deck</h1>
+        </div>
+      </section>
+
+      <!-- PAGE 4: ANALYTICS -->
+      <section id="page-analytics" class="page-view">
+        <div class="page-title">
+          <h1>Analytics</h1>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 </html>
